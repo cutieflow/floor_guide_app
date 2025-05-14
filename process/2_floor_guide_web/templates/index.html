@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'ja') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ translate("title") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="language-switch">
+        <a href="{{ url_for('set_language', lang='ja') }}">日本語</a> | 
+        <a href="{{ url_for('set_language', lang='en') }}">English</a>
+    </div>
+    <h1>{{ translate("title") }}</h1>
+    <div class="floor-list">
+        {% for fid, floor in floors.items() %}
+            <div class="floor-card">
+                <h2><a href="{{ url_for('floor_detail', floor_id=fid) }}">{{ fid }} - {{ floor.name }}</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+    <footer>
+        {% if session.get("logged_in") %}
+            <a href="{{ url_for('admin') }}">{{ translate("admin_title") }}</a> |
+            <a href="{{ url_for('logout') }}">{{ translate("logout_button") }}</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">{{ translate("login_title") }}</a>
+        {% endif %}
+    </footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+{
+  "1F": {
+    "name": "1階",
+    "description": "1階は受付や市民課があります。",
+    "image": "https://example.com/image1.jpg",
+    "map": "https://example.com/map1.jpg",
+    "areas": {
+      "reception": {
+        "name": "受付",
+        "description": "市民の問い合わせ窓口です。",
+        "image": "https://example.com/area_reception_1f.jpg"
+      },
+      "citizen_service": {
+        "name": "市民課",
+        "description": "各種証明書の発行を行います。",
+        "image": "https://example.com/area_citizen_1f.jpg"
+      }
+    }
+  },
+  "2F": {
+    "name": "2階",
+    "description": "2階には売店や食堂があります。",
+    "image": "https://example.com/image2.jpg",
+    "map": "https://example.com/map2.jpg",
+    "areas": {
+      "grocery": {
+        "name": "売店",
+        "description": "食料品、雑貨などの売店です。",
+        "image": "https://example.com/area_grocery_2f.jpg"
+      },
+      "cafeteria": {
+        "name": "食堂",
+        "description": "昼時間のみの営業です。",
+        "image": "https://example.com/area_cafeteria_2f.jpg"
+      }
+    }
+  },
+  "3F": {
+    "name": "3階",
+    "description": "3階は図書館と会議室があります。",
+    "image": "https://example.com/image3.jpg",
+    "map": "https://example.com/map3.jpg",
+    "areas": {
+      "library": {
+        "name": "図書館",
+        "description": "多くの本があります。",
+        "image": "https://example.com/area_library_3f.jpg"
+      },
+      "meeting_room": {
+        "name": "会議室",
+        "description": "会議やセミナーが行われます。",
+        "image": "https://example.com/area_meeting_room_3f.jpg"
+      }
+    }
+  },
+  "4F": {
+    "name": "4階",
+    "description": "4階にはレストランとオフィスがあります。",
+    "image": "https://example.com/image4.jpg",
+    "map": "https://example.com/map4.jpg",
+    "areas": {
+      "restaurant": {
+        "name": "レストラン",
+        "description": "食事とドリンクが提供されます。",
+        "image": "https://example.com/area_restaurant_4f.jpg"
+      },
+      "offices": {
+        "name": "オフィス",
+        "description": "さまざまな企業のオフィスがあります。",
+        "image": "https://example.com/area_offices_4f.jpg"
+      }
+    }
+  },
+  "5F": {
+    "name": "5階",
+    "description": "5階には展示会場とカフェがあります。",
+    "image": "https://example.com/image5.jpg",
+    "map": "https://example.com/map5.jpg",
+    "areas": {
+      "exhibition": {
+        "name": "展示会場",
+        "description": "アートと写真の展示があります。",
+        "image": "https://example.com/area_exhibition_5f.jpg"
+      },
+      "cafe": {
+        "name": "カフェ",
+        "description": "休憩に最適なカフェです。",
+        "image": "https://example.com/area_cafe_5f.jpg"
+      }
+    }
+  },
+  "6F": {
+    "name": "6階",
+    "description": "6階にはオフィスとラウンジがあります。",
+    "image": "https://example.com/image6.jpg",
+    "map": "https://example.com/map6.jpg",
+    "areas": {
+      "lounge": {
+        "name": "ラウンジ",
+        "description": "リラックスできるスペースです。",
+        "image": "https://example.com/area_lounge_6f.jpg"
+      },
+      "office": {
+        "name": "オフィス",
+        "description": "スタッフが働いているオフィスです。",
+        "image": "https://example.com/area_office_6f.jpg"
+      }
+    }
+  }
+  
+}

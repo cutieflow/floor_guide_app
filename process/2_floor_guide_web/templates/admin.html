@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'ja') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ translate("admin_title") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="language-switch">
+        <a href="{{ url_for('set_language', lang='ja') }}">日本語</a> | 
+        <a href="{{ url_for('set_language', lang='en') }}">English</a>
+    </div>
+
+    <h1>{{ translate("admin_title") }}</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h2>{{ translate("add_or_edit_floor") }}</h2>
+
+    <form method="post">
+        <label>{{ translate("floor_id") }}<br>
+            <input name="floor_id" required>
+        </label><br><br>
+
+        <label>{{ translate("floor_name") }}<br>
+            <input name="name" required>
+        </label><br><br>
+
+        <label>{{ translate("services_hint") }}<br>
+            <textarea name="services" rows="5" required></textarea>
+        </label><br><br>
+
+        <label>{{ translate("image_url") }}<br>
+            <input name="image">
+        </label><br><br>
+
+        <label>{{ translate("map_url") }}<br>
+            <input name="map">
+        </label><br><br>
+
+        <label>{{ translate("description") }}<br>
+            <textarea name="description" rows="4"></textarea>
+        </label><br><br>
+
+        <!-- Area Form Section -->
+        <div id="area-form-section">
+            <div class="area-entry">
+                <label>{{ translate("area_id") }}: 
+                    <input type="text" class="area-id" name="area_id">
+                </label><br>
+                <label>{{ translate("area_name") }}: 
+                    <input type="text" class="area-name" name="area_name">
+                </label><br>
+                <label>{{ translate("area_description") }}<br>
+                    <textarea class="area-description" name="area_description" rows="3"></textarea>
+                </label><br>
+                <label>{{ translate("area_image") }}: 
+                    <input type="text" class="area-image" name="area_image">
+                </label><br>
+            </div>
+        </div>
+
+        <button type="button" onclick="addArea()">＋ {{ translate('add_area') }}</button><br><br>
+
+        <!-- Hidden field for areas JSON -->
+        <input type="hidden" name="areas_json" id="areas_json">
+
+        <button type="submit">{{ translate("save_button") }}</button>
+    </form>
+
+    <a href="{{ url_for('index') }}">{{ translate("back_link") }}</a>
+
+    <script>
+      // Function to add new area entry
+      function addArea() {
+        const section = document.getElementById("area-form-section");
+        const clone = section.querySelector(".area-entry").cloneNode(true);
+        clone.querySelectorAll("input, textarea").forEach(el => el.value = "");
+        section.appendChild(clone);
+      }
+
+      // Before submitting form, collect all area data into JSON
+      document.querySelector("form").addEventListener("submit", function (e) {
+        const areaEntries = document.querySelectorAll(".area-entry");
+        const areas = {};
+
+        areaEntries.forEach(entry => {
+          const id = entry.querySelector(".area-id").value.trim();
+          if (!id) return; // skip if no ID
+          areas[id] = {
+            name: entry.querySelector(".area-name").value.trim(),
+            description: entry.querySelector(".area-description").value.trim(),
+            image: entry.querySelector(".area-image").value.trim()
+          };
+        });
+
+        document.getElementById("areas_json").value = JSON.stringify(areas);
+      });
+    </script>
+</body>
+</html>

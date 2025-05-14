@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'ja') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ floor.name if floor else "Not Found" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="language-switch">
+        <span>{{ session.get('lang', 'ja') == 'ja' and '日本語' or 'English' }}</span> | 
+        <a href="{{ url_for('set_language', lang='ja') }}">日本語</a> | 
+        <a href="{{ url_for('set_language', lang='en') }}">English</a>
+    </div>
+    {% if floor %}
+        <h1>{{ floor_id }} - {{ floor.name }}</h1>
+
+        {% if floor.description %}
+            <h3>{{ translate("description") }}</h3>
+            <p>{{ floor.description }}</p> 
+        {% endif %}
+        <h3>{{ translate("services") }}</h3>
+        <ul>
+            {% for service in floor.services %}
+                <li>{{ service }}</li>
+            {% endfor %}
+        </ul>
+        
+        {% if floor.areas %}
+        <h3>{{ translate("areas") }}</h3>
+        <ul>
+            {% for area_id, area in floor.areas.items() %}
+            <li>
+                <strong>{{ area.name }}</strong><br>
+                <p>{{ area.description }}</p>
+                {% if area.image %}
+                    <img src="{{ area.image }}" alt="{{ area.name }}" class="responsive-img">
+                {% endif %}
+
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+        {% if floor.image %}
+            <h3>{{ translate("image") }}</h3>
+            <img src="{{ floor.image }}" alt="{{ floor.name }} image" class="responsive-img">
+        {% endif %}
+
+        {% if floor.map %}
+            <h3>{{ translate("map") }}</h3>
+            <img src="{{ floor.map }}" alt="{{ floor.name }} map" class="responsive-img">
+        {% endif %}
+    {% else %}
+        <p>フロア情報が見つかりません。</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}">{{ translate("back_link") }}</a>
+</body>
+</html>
